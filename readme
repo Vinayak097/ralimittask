@@ -1,0 +1,6 @@
+please start your redis server 
+run this cmd
+docker run --name redis2 -d -p 6379:6379 redis
+and run 
+npm install
+node index.js
