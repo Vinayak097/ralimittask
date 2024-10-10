@@ -1,6 +1,15 @@
-please start your redis server 
-run this cmd
+
+
+# Project Setup Instructions
+
+Please start your Redis server by running the following command:
 docker run --name redis2 -d -p 6379:6379 redis
-and run 
+
+Next, install all the dependencies by running:
 npm install
+
+Finally, start the Node.js application by running:
 node index.js
+
+Make sure Docker is running on your system, and Redis will be available at localhost:6379.
+

@@ -78,29 +78,24 @@ app.post('/task', async (req, res) => {
     }
     taskQueue[userId].push(userId);
 
-    if (taskQueue[userId].length === 1) {
-      
+    if (taskQueue[userId].length === 1){
       setTimeout(() => processQueue(userId), 1000);
     }
-
     res.status(200).json({ message: 'Task queued for processing' });
   }
 });
 
 if (cluster.isMaster) {
   console.log(`Master ${process.pid} is running`);
-
-  for (let i = 0; i < numCPUs; i++) {
+  for (let i = 0; i < numCPUs; i++){
     cluster.fork();
   }
 
   cluster.on('exit', (worker, code, signal) => {
     console.log(`Worker ${worker.process.pid} died`);
-   
     cluster.fork();
   });
-} else {
-  
+} else{
   app.listen(port, () => {
     console.log(`Worker ${process.pid} started and listening on port ${port}`);
   });
